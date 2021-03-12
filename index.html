@@ -166,6 +166,7 @@
 	
 	#menu{
 		display: none;
+		height: 80%;
 	}
 	
 	.hand-click{
@@ -189,7 +190,7 @@
 		text-align: center;
 	}
 	
-	#bt-returnmenu{
+	#bt-returnmenu, #bt-close-ads{
 		background-color:#fff;
 		padding:5px;
 		border-radius: 5px;
@@ -252,6 +253,14 @@
 		height: 100%;
 	}
 	
+	#ads{
+		display: block;
+		width: 100%;
+		height: 100%;
+		z-index: 999;
+		background-color: #fff;
+	}
+	
 </style>
 
 <script>
@@ -282,6 +291,13 @@
 
 </div>
 
+<div class="" id="ads">
+	<div id="bt-close-ads"> close </div>
+	<div id="cont-ads">
+	
+	</div>
+
+</div>
 
 <div  id="menu">
 
@@ -314,7 +330,6 @@
 	
 	<div class="square">80</div>
 </div>
-<div id="SC_TBlock_836992"></div>
 
 
 <script src="scripts/localstorage.js"></script>
@@ -335,17 +350,19 @@ btonelife = document.getElementById("bt-onelife");
 btscoring = document.getElementById("bt-scoring");
 pagstart = document.getElementById("start");
 pagchange = document.getElementById("change");
+pagads= document.getElementById("ads");
 
-if( !mobileCheck() ){
-	pagchange.style.display = "block";
-	pagstart.style.display = "none";
-}
 
 pagemenu = document.getElementById("menu");
 pagtutorial = document.getElementById("tutorial");
 bttutorial = document.getElementById("bt-tutorial");
 btreturnmenu = document.getElementById("bt-returnmenu");
+btcloseads = document.getElementById("bt-close-ads");
 
+if( !mobileCheck() ){
+	pagchange.style.display = "block";
+	pagstart.style.display = "none";
+}
 
 levels = [];
 levels.push( new Level([0, 200, 0],[0, 255, 0],[0,1,0], 50, 10));
@@ -361,6 +378,7 @@ scoring = document.getElementById("scoring");
 btreturn = document.getElementById("btreturn");
 datagame = document.getElementById("datagame");
 datarecord= document.getElementById("txt-record");
+contads = document.getElementById("cont-ads");
 
 
 r = 0;
@@ -368,6 +386,10 @@ g = 0;
 b = 0;
 current_level = 0;
 current_point = 0;
+
+btcloseads.addEventListener("click", function(){
+	pagads.style.display = "none";
+});
 
 
 pagstart.addEventListener("click", function(){
@@ -513,6 +535,20 @@ pickColor = function(){
 		
 }
 
+showAds();
+function showAds(){
+	
+	contads.innerHTML =  '<div style="position: fixed; bottom: 0px; " id="SC_TBlock_836992"></div>';
+	
+	(sc_adv_out = window.sc_adv_out || []).push({
+		id: 836992,
+		domain: "n.ads5-adnow.com",
+	});
+
+	
+	
+	
+}
 function startLevel(){
 
 	r = 0;
@@ -575,12 +611,7 @@ square.addEventListener("click", pickColor, false);
  
 </script>
 
-<script type="text/javascript">
-(sc_adv_out = window.sc_adv_out || []).push({
-    id: 836992,
-    domain: "n.ads5-adnow.com",
-});
-</script>
+
 <script type="text/javascript" src="//st-n.ads5-adnow.com/js/a.js" async></script>
 <body>
 
