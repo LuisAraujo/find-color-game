@@ -1,18 +1,53 @@
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick Color </title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
 </style>
 <style>
+	@font-face {
+	  font-family: "Fjalla One";
+	  src: url("fonts/FjallaOne-Regular.ttf") format("ttf"),
+		   url("fonts/FjallaOne-Regular.ttf") format("ttf");
+	}
+	   
+	@keyframes fadein {
+		0%   {opacity: 1}
+		25%  {opacity: 0.75}
+		50%  {opacity: 0.5}
+		75%  {opacity: 0.25}
+		100% {opacity: 0}
+	}
 
-	 
+	@keyframes moving {
+		0%   {margin-top: 1px}
+		25%  {margin-top: 5px}
+		50%  {margin-top: 10px}
+		75%  {margin-top: 5px}
+		100% {margin-top: 1px}
+	}
+	
+	@keyframes moving-side {
+		0%   {left: 27%}
+		25%   {left: 26%}
+		50%  {left: 25%}
+		75%   {left: 24%}
+		100%  {left: 23%}
+	}
+	
+	@keyframes moving-top {
+		0%   {top: 50%}
+		100%  {top: 45%}
+	}
+	
 	 html, body {
 		margin:0px;
 		padding:0px
 		width: 100%;
 		height: 100%;
 		overflow:hidden;
-	
+		background-color:#fff;
 	}
 	
 	#bg_game{
@@ -25,7 +60,7 @@
 	
 	}
 
-	#square{
+	.square{
 		width: 300px;
 		height: 280px;
 		position: absolute;
@@ -33,65 +68,243 @@
 		left: calc(50% - 150px);
 		-ms-transform: translateY(-50%);
 		transform: translateY(-50%);
-
+		background: rgb(0, 185, 0);
 		font-size: 200px;
 		color: #fff;
 		text-align: center;
 		padding-top: 20px;
 	}
 	
-	#btreturn{
-		width: 300px;
-		height: 300px;
+	.bt-center{
+		width: 50%;
 		position: absolute;
 		top: 50%;
-		left: calc(50% - 150px);
+		left: 25%;
 		-ms-transform: translateY(-50%);
 		transform: translateY(-50%);
 		
 	}
 	
+	#btreturn{
+		animation-name: moving-side;
+	    animation-duration: 1s;
+		animation-iteration-count: infinite;
+	}
+	
+	#btwin{
+		animation-name: moving-top;
+	    animation-duration: 1s;
+		animation-iteration-count: infinite;
+	}
 	
 	#scoring{
-		font-size: 100px;
+		font-size:30px;
 		text-align: center;
 		margin-top: 100px;
 		color: #fff;
 	}
+	
+	#logo{
+		width: 60%;
+		display: block;
+		margin: 0 auto;
+		margin-top: 100px;
+	}
+	
+	.btn{
+		width: 50%;
+		display: block;
+	}
+	
+	.btn-mini{
+		width: 30%;
+		display: block;
+	}
+	
+	.center{
+		margin: 0 auto;
+	}
+	
+	.mt2{
+		margin-top:20px;
+	}
+	
+	.mt5{
+		margin-top:50px;
+	}
+	
+	.mt10{
+		margin-top:100px;
+	}
+	
+	.mt15{
+		margin-top:150px;
+	}
+	
+	.fadein-page{
+	  opacity: 0;
+	  animation-name: fadein;
+	  animation-duration: 0.5s;
+	}
+	
+	#tutorial{
+		display: none;
+		width: 100%;
+		height: 100%;
+		background-color: rgb(0, 180, 0) ;
+		overflow:hidden;
+		font-family: 'Fjalla One', sans-serif;	
+	}
+	
+	.message{
+		font-size: 20pt;
+		text-align: center;
+		margin-top: 100px;
+		color: #fff;
+	}
+	
+	#menu{
+		display: none;
+	}
+	
+	.hand-click{
+		z-index: 999;
+		display:block;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 50%;
+		animation-name: moving;
+	    animation-duration: 1s;
+		animation-iteration-count: infinite;
+	}
+	
+
+	.ms-bt{
+		position: fixed;
+		top: 75%;
+		width: 80%;
+		left: 10%;
+		text-align: center;
+	}
+	
+	#bt-returnmenu{
+		background-color:#fff;
+		padding:5px;
+		border-radius: 5px;
+		width: 50px;
+		text-align: center;
+		margin: 5px;
+		opacity: 0.5;
+		float:left;
+	}
+	
+	#datagame{ 
+		padding:5px;
+		border-radius: 5px;
+		width: 100px;
+		text-align: right;
+		margin: 5px;
+		opacity: 0.5;
+		float:left;
+	}
+	
+	#record{
+		padding:5px;
+		border-radius: 5px;
+		width: 100px;
+		height: 25px;
+		text-align: right;
+		margin: 5px;
+		opacity: 0.5;
+		float:left;
+	}
+	#record img{
+		height: 100%;
+	}
+	
+	#record span{
+		position: relative;
+		top: -5px;
+	}
+	
+	
+	
+	#logo-main{
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 100px;
+	}
+	
+	
 </style>
 </head>
 <body id="body">
-<div id="menu">
 
-	<div id="logo"></div>
-	<div id="play"></div>
+<div  id="start">
+
+	<img id="logo-main" src="assets/logo.png">
 	
+
 </div>
+
+
+<div  id="menu">
+
+	<img id="logo" src="assets/logo.png">
+	<img class="btn center mt5" id="bt-onelife" src="assets/bt-one-life.png">
+	<img class="btn center mt2"  id="bt-scoring" src="assets/bt-scoring.png">
+	<img class="btn-mini center mt5"  id="bt-tutorial" src="assets/bt-tutorial.png">
+
+</div>
+
 <div id="bg_game">
+	
+	<div id="bt-returnmenu"> menu </div>
+	<div id="datagame"> ... </div>
+	<div id="record"> <img src="assets/icon-record.png"><span id="txt-record">level 1</span> </div>
+	
 	<div id="scoring">
 		Points: 90
 	</div>
-	<div id="square">
-	80
-	</div>
+	<div class="square" id="square">80</div>
 
-	<img id="btreturn" src="bt-return.png">
+	<img id="btreturn" class="bt-center" src="assets/bt-return.png">
+	<img id="btwin" class="bt-center" src="assets/bt-win.png">
 
 </div>
 
-<script>
-r = 0;
-g = 0;
-b = 0;
-current_level = 0;
+<div class="bgtutorial" id="tutorial">
+	<div class="message">when the color of the square to equal the background...</div>
+	<img class="hand-click" src="assets/bt-click.png">
+	
+	<div class="square">80</div>
+</div>
 
-function Level(color, limit, add, target, time){
-	this.color = color;
-	this.limit = limit;
-	this.add = add;
-	this.target = target;
-	this.time = time;
+<script src="scripts/localstorage.js"></script>
+<script>
+
+if( getItem("level") == undefined){
+	saveItem("level", 0);
+	console.log("init bd");
 }
+
+if( getItem("points") == undefined){
+	saveItem("points", 0);
+	console.log("init bd");
+}
+
+
+mode = "";
+
+btonelife = document.getElementById("bt-onelife");
+btscoring = document.getElementById("bt-scoring");
+pagstart = document.getElementById("start");
+pagemenu = document.getElementById("menu");
+pagtutorial = document.getElementById("tutorial");
+bttutorial = document.getElementById("bt-tutorial");
+btreturnmenu = document.getElementById("bt-returnmenu");
+
 
 levels = [];
 levels.push( new Level([0, 200, 0],[0, 255, 0],[0,1,0], 50, 10));
@@ -101,12 +314,104 @@ levels.push( new Level([0, 0,200],[0, 0, 255],[0,0,1], 60, 10));
 levels.push( new Level([0, 100, 200],[0, 100, 200],[0,0.5,1], 60, 10));
 
 
-body = document.getElementById("bg_game");
+bggame = document.getElementById("bg_game");
 square = document.getElementById("square");
 scoring = document.getElementById("scoring");
 btreturn = document.getElementById("btreturn");
+datagame = document.getElementById("datagame");
+datarecord= document.getElementById("txt-record");
 
-startLevel();
+
+r = 0;
+g = 0;
+b = 0;
+current_level = 0;
+current_point = 0;
+
+
+pagstart.addEventListener("click", function(){
+	pagemenu.style.display = "block";	
+	pagstart.style.display = "none";	
+	document.getElementById("body").requestFullscreen();
+	
+});
+
+
+btreturnmenu.addEventListener("click", function(){
+		
+	bggame.classList.add("fadein-page");
+	btscoring.src = "assets/bt-scoring.png";
+	btonelife.src = "assets/bt-one-life.png";
+	setTimeout( function(){
+		pagemenu.classList.remove("fadein-page");
+		bggame.classList.remove("fadein-page");
+		bggame.style.display = "none"; 
+		
+		pagemenu.style.display = "block";
+	}, 50);
+	
+});
+
+
+
+btonelife.addEventListener("click", function(){
+	btonelife.src = "assets/bt-one-life-over.png";
+	pagemenu.classList.add("fadein-page");
+	setTimeout( startLevel, 50);
+	mode = "onelife";
+	current_level = 0;
+
+});
+
+
+btscoring.addEventListener("click", function(){
+	btscoring.src = "assets/bt-scoring-over.png";
+	pagemenu.classList.add("fadein-page");
+	setTimeout( startLevel, 50);
+	mode = "scoring";
+	current_level = 0;
+	current_point = 0;
+
+});
+
+
+bttutorial.addEventListener("click", function(){
+	//document.getElementById("body").requestFullscreen();
+	
+	bttutorial.src = "assets/bt-tutorial-over.png";
+	pagemenu.classList.add("fadein-page");
+	
+	setTimeout( function(){ 
+		pagemenu.style.display = "none"; 
+		bttutorial.src = "assets/bt-tutorial.png"; 
+		pagtutorial.style.display = "block"; 
+	}, 50);
+
+});
+
+pagtutorial.addEventListener("click", function(){
+		
+	pagtutorial.classList.add("fadein-page");
+	
+	setTimeout( function(){
+		pagemenu.classList.remove("fadein-page");
+		pagtutorial.classList.remove("fadein-page");
+		pagtutorial.style.display = "none"; 
+		
+		pagemenu.style.display = "block";
+	}, 50);
+	
+});
+
+function Level(color, limit, add, target, time){
+	this.color = color;
+	this.limit = limit;
+	this.add = add;
+	this.target = target;
+	this.time = time;
+}
+
+
 
 function changeColor(){
 	
@@ -123,23 +428,83 @@ function changeColor(){
 	if((r>levels[current_level].limit[0]) || (g>levels[current_level].limit[1]) || (b>levels[current_level].limit[2]))
 		restartLevel();
 	
-	body.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+	bggame.style.backgroundColor = "rgb("+r+","+g+","+b+")";
 	if(islevel)
 		setTimeout( changeColor, 10 );
 		
 };
 
+  
+pickColor = function(){
+	if(preload)
+	  return;
+	  
+	islevel = false;
+	sum = 100 - Math.abs(  ( r - levels[current_level].color[0]) + (g - levels[current_level].color[1]) + (b - levels[current_level].color[2]) );
+	scoring.style.display = "block";
+	scoring.innerHTML =   sum  + " pts" ;	
+	square.style.display = "none";
+	
+	if(mode == "scoring"){
+		current_point += sum;
+		btwin.style.display = "block";
+		setTimeout( nextLevel, 1000 );
+		
+		 if( parseInt( getItem("points") ) < current_point ){
+			saveItem("points", current_point);
+		 }
+	
+	}else{
+		if(sum >= levels[current_level].target ){
+			 btwin.style.display = "block";
+			 setTimeout( nextLevel, 1000 );
+			 
+			 if( parseInt( getItem("level") ) <  current_level+1 ){
+				saveItem("level", current_level+1);
+			 }
+		 
+		}else{
+			btreturn.style.display = "block";
+		}
+		
+		
+	}
+		
+}
+
 function startLevel(){
+
 	r = 0;
 	g = 0;
 	b = 0;
+	
 	console.log("starting");
+	
+	if(mode == "onelife"){
+		datagame.innerHTML = "level "+ (current_level+1);
+		datarecord.innerHTML = getItem("level");
+	}else{
+		datagame.innerHTML = current_point + " points";
+		datarecord.innerHTML = getItem("points");
+	}
+
 	btreturn.style.display = "none";
-	body.style.backgroundColor = "rgb("+levels[current_level].color[0]+","+levels[current_level].color[1]+","+levels[current_level].color[2]+")"; 
-	square.style.backgroundColor = "rgb("+levels[current_level].color[0]+","+levels[current_level].color[1]+","+levels[current_level].color[2]+")"; 
-	square.innerHTML = levels[current_level].target;
 	scoring.style.display = "none";
 	square.style.display = "block";
+	btwin.style.display = "none";
+	
+	pagemenu.style.display = "none";
+	bggame.style.display = "block";
+	
+	bggame.style.backgroundColor = "rgb("+levels[current_level].color[0]+","+levels[current_level].color[1]+","+levels[current_level].color[2]+")"; 
+	square.style.backgroundColor = "rgb("+levels[current_level].color[0]+","+levels[current_level].color[1]+","+levels[current_level].color[2]+")"; 
+	
+	if(mode == "onelife")
+		square.innerHTML = levels[current_level].target;
+	else
+		square.innerHTML = "?";
+	
+	
 	setTimeout( changeColor, 1000 );
 	islevel = true;	 
 	preload = true;
@@ -153,6 +518,7 @@ function restartLevel(){
 
 
 function nextLevel(){
+	
 	if(current_level < levels.length)
 		current_level++;
 		
@@ -164,23 +530,8 @@ btreturn.addEventListener("click", function(){
 	startLevel();
 });
 
-square.addEventListener("click", function(){
-	if(preload)
-	  return;
-	  
-	islevel = false;
-	sum = 100 - Math.abs(  ( r - levels[current_level].color[0]) + (g - levels[current_level].color[1]) + (b - levels[current_level].color[2]) );
-	scoring.style.display = "block";
-	scoring.innerHTML = "Points:" +  sum  ;	
-	square.style.display = "none";
-	if(sum >= levels[current_level].target ){
-		 setTimeout( nextLevel, 1000 );
-	}else{
-		btreturn.style.display = "block";
-	}
-		
-}, false);
-   
+square.addEventListener("click", pickColor, false);
+ 
 </script>
 <body>
 
