@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick Color </title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+</style>
+<style>
+ html, body {
+		margin:0px;
+		padding:0px
+		width: 100%;
+		height: 100%;
+		overflow:hidden;
+		background-color:#fff;
+	}
+	
+	#ads{
+		width: 100%;
+		height: 100%;
+		z-index: 999;
+		background-color: #fff;
+	}
+	
+	#cont-ads{
+		
+		overflow:hidden;
+	}
+	
+	#bt-close-ads{
+		background-color:#fff;
+		position: fixed;
+		top: 10px;
+		left: 10px;
+		padding:5px;
+		border-radius: 5px;
+		width: 50px;
+		text-align: center;
+		margin: 5px;
+		opacity: 0.5;
+		float:left;
+		z-index:99;
+	}
+	
+	</style>
+</head>
+<body>
+<div id="ads">
+	<div id="bt-close-ads"> close </div>
+	<div id="cont-ads">
+		<div style="position: fixed; bottom: 0px; " id="SC_TBlock_836992"></div>
+	</div>
+</div>
+<script>
+    mode = window.location.search.substr(1);
+	
+	btcloseads = document.getElementById("bt-close-ads");
+	btcloseads.addEventListener("click", function(){
+			window.location = "index.html?"+mode;
+	});
+
+</script>
+<script>
+
+(sc_adv_out = window.sc_adv_out || []).push({
+	id: 836992,
+	domain: "n.ads5-adnow.com",
+});
+</script>	
+	
+<script type="text/javascript" src="//st-n.ads5-adnow.com/js/a.js" async></script>
+</body>
