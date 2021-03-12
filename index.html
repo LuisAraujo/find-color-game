@@ -287,12 +287,6 @@
 
 </div>
 
-<div id="ads">
-	<div id="bt-close-ads"> close </div>
-	<div id="cont-ads">
-		<div style="position: fixed; bottom: 0px; " id="SC_TBlock_836992"></div>
-	</div>
-</div>
 
 <div  id="menu">
 
@@ -360,7 +354,7 @@
 	datarecord= document.getElementById("txt-record");
 
 	mode = window.location.search.substr(1);
-	if((mode != undefined) || (mode != "")){
+	if((mode != undefined) && (mode != "")){
 		mode = mode.split("=")[1];
 		pagstart.style.display = "none";
 		startLevel();
@@ -500,14 +494,22 @@
 		
 		if(mode == "scoring"){
 			current_point += sum;
-			btwin.style.display = "block";
-			setTimeout( nextLevel, 1000 );
 			
-			 
+					 
 			 if( parseInt( getItem("points") ) < current_point ){
 				saveItem("points", current_point);
-			 }else if(current_point < 0){
+			 
+			 }
+			 
+			 if(current_point < 0){
 				btreturn.style.display = "block";
+				current_point = 0;
+				current_level = 0;
+				setTimeout( startLevel, 1000 );
+			 }else{
+				btwin.style.display = "block";
+				setTimeout( nextLevel, 1000 );
+			
 			 }
 		
 		}else{

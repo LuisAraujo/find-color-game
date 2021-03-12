@@ -1,0 +1,182 @@
+<html>
+<head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+</style>
+<style>
+
+	 
+	 html, body {
+		margin:0px;
+		padding:0px
+		width: 100%;
+		height: 100%;
+		overflow:hidden;
+	
+	}
+	
+	#bg_game{
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-color: rgb(0, 200, 0) ;
+		overflow:hidden;
+		font-family: 'Fjalla One', sans-serif;
+	
+	}
+
+	#square{
+		width: 300px;
+		height: 280px;
+		position: absolute;
+		top: 50%;
+		left: calc(50% - 150px);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+
+		font-size: 200px;
+		color: #fff;
+		text-align: center;
+		padding-top: 20px;
+	}
+	
+	#btreturn{
+		width: 300px;
+		height: 300px;
+		position: absolute;
+		top: 50%;
+		left: calc(50% - 150px);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+		
+	}
+	
+	
+	#scoring{
+		font-size: 100px;
+		text-align: center;
+		margin-top: 100px;
+		color: #fff;
+	}
+</style>
+</head>
+<body id="body">
+
+<div id="bg_game">
+	<div id="scoring">
+		Points: 90
+	</div>
+	<div id="square">
+	80
+	</div>
+
+	<img id="btreturn" src="bt-return.png">
+
+</div>
+
+<script>
+r = 0;
+g = 0;
+b = 0;
+current_level = 0;
+
+function Level(color, limit, add, target, time){
+	this.color = color;
+	this.limit = limit;
+	this.add = add;
+	this.target = target;
+	this.time = time;
+}
+
+levels = [];
+levels.push( new Level([0, 200, 0],[0, 255, 0],[0,1,0], 50, 10));
+levels.push( new Level([0, 240, 240],[0, 255, 255],[0,1,1], 50, 10));
+levels.push( new Level([200, 0, 0],[255, 0, 0],[1,0,0], 50, 10));
+levels.push( new Level([0, 0,200],[0, 0, 255],[0,0,1], 60, 10));
+levels.push( new Level([0, 100, 200],[0, 100, 200],[0,0.5,1], 60, 10));
+
+
+body = document.getElementById("bg_game");
+square = document.getElementById("square");
+scoring = document.getElementById("scoring");
+btreturn = document.getElementById("btreturn");
+
+startLevel();
+
+function changeColor(){
+	
+	preload = false;
+	
+	r+=levels[current_level].add[0];
+	g+=levels[current_level].add[1];
+	b+=levels[current_level].add[2];
+	
+	r=r>255?255:r;
+	g=g>255?255:g;
+	b=b>255?255:b;
+	
+	if((r>levels[current_level].limit[0]) || (g>levels[current_level].limit[1]) || (b>levels[current_level].limit[2]))
+		restartLevel();
+	
+	body.style.backgroundColor = "rgb("+r+","+g+","+b+")";
+	if(islevel)
+		setTimeout( changeColor, 10 );
+		
+};
+
+function startLevel(){
+	r = 0;
+	g = 0;
+	b = 0;
+	console.log("starting");
+	btreturn.style.display = "none";
+	body.style.backgroundColor = "rgb("+levels[current_level].color[0]+","+levels[current_level].color[1]+","+levels[current_level].color[2]+")"; 
+	square.style.backgroundColor = "rgb("+levels[current_level].color[0]+","+levels[current_level].color[1]+","+levels[current_level].color[2]+")"; 
+	square.innerHTML = levels[current_level].target;
+	scoring.style.display = "none";
+	square.style.display = "block";
+	setTimeout( changeColor, 1000 );
+	islevel = true;	 
+	preload = true;
+}
+
+function restartLevel(){
+	r = 0;
+	g = 0;
+	b = 0;
+}
+
+
+function nextLevel(){
+	if(current_level < levels.length)
+		current_level++;
+		
+	startLevel();
+}
+
+btreturn.addEventListener("click", function(){
+	current_level = 0;
+	startLevel();
+});
+
+square.addEventListener("click", function(){
+	if(preload)
+	  return;
+	  
+	islevel = false;
+	sum = 100 - Math.abs(  ( r - levels[current_level].color[0]) + (g - levels[current_level].color[1]) + (b - levels[current_level].color[2]) );
+	scoring.style.display = "block";
+	scoring.innerHTML = "Points:" +  sum  ;	
+	square.style.display = "none";
+	if(sum >= levels[current_level].target ){
+		 setTimeout( nextLevel, 1000 );
+	}else{
+		btreturn.style.display = "block";
+	}
+		
+}, false);
+   
+</script>
+<body>
+
+</html>
