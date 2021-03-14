@@ -75,7 +75,7 @@
 			pagemenu.classList.remove("fadein-page");
 			bggame.classList.remove("fadein-page");
 			bggame.style.display = "none"; 
-			
+			islevel = false;
 			pagemenu.style.display = "block";
 		}, 50);
 		
@@ -134,15 +134,19 @@
 
 	function gerateLevels(){
 					
+		min_target = 50;
+		
+		min_target += parseInt(current_level / 10) * 5;
+		
 		add =  [ Math.random(), Math.random(), Math.random() ];
 			
-		factor = Math.random() * 255;
+		factor = 55 + Math.random() * 200;
 		
 		color =  [ add[0] * factor , add[1] * factor, add[2] * factor];
 		limit = [ add[0] * 255 , add[1] * 255, add[2] * 255];
 		
 		//color, limit, add, target, time
-		levels.push( new Level(color,limit, add, 50, 10));
+		levels.push( new Level(color,limit, add, min_target, 10));
 	
 
 	}
@@ -163,7 +167,7 @@
 		
 		bggame.style.backgroundColor = "rgb("+r+","+g+","+b+")";
 		if(islevel)
-			setTimeout( changeColor, 10 );
+			changetimeout = setTimeout( changeColor, 10 );
 			
 	};
 
@@ -255,7 +259,7 @@
 			square.innerHTML = "?";
 		
 		
-		setTimeout( changeColor, 1000 );
+		changetimeout = setTimeout( changeColor, 1000 );
 		islevel = true;	 
 		preload = true;
 	}
