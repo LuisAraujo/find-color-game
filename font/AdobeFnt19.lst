@@ -1,0 +1,25 @@
+%!Adobe-FontList 1.19
+%Locale:0x416
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:FjallaOne-Regular
+FamilyName:Fjalla One
+StyleName:Regular
+FullName:Fjalla One
+MenuName:Fjalla One
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\hiper\Documents\GitHub\Find-Color-Game\Font\FjallaOne-Regular.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:34744
+FileModTime:1351306800
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Fjalla One
+%EndFont
+
