@@ -153,7 +153,6 @@
 	.message{
 		font-size: 20pt;
 		text-align: center;
-		margin-top: 100px;
 		color: #fff;
 	}
 	
@@ -183,11 +182,12 @@
 		text-align: center;
 	}
 	
-	#bt-returnmenu{
+	.bn-top{
 		background-color:#fff;
 		padding:5px;
 		border-radius: 5px;
-		width: 50px;
+		border: 1px #999 solid;
+		
 		text-align: center;
 		margin: 5px;
 		opacity: 0.5;
@@ -256,7 +256,23 @@
 	.screent{
 		width:100%;
 		height: 100%;
-		background-color:#fff;
 		margin: 0px;
+		display:none;
+	}
+	
+	.bg-black{
+		background-color:#fff;
+	}
+	
+	.screent.active{
+		display: block !important;
+	}
+	
+	.black{
+		color: #000;
+	}
+	
+	.green{
+		color: #444;
 	}
 	

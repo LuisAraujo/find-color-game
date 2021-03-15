@@ -21,6 +21,15 @@
 	pagemenu = document.getElementById("menu");
 	pagtutorial = document.getElementById("tutorial");
 	bttutorial = document.getElementById("bt-tutorial");
+	
+	pagetutoclick = document.getElementById("tuto-click");
+	pagetutomode = document.getElementById("tuto-mode");
+	
+	btnexttuto = document.getElementById("bt-nexttutorial");
+	btprevioustuto = document.getElementById("bt-previoustutorial");
+	btmenututo1 = document.getElementById("bt-menututorial1");
+	btmenututo2 = document.getElementById("bt-menututorial2");
+	
 	btreturnmenu = document.getElementById("bt-returnmenu");
 
 	levels = [];
@@ -57,7 +66,17 @@
 	}
 
 	
-
+	btnexttuto.addEventListener("click", function(){	
+		pagetutoclick.classList.remove("active");
+		pagetutomode.classList.add("active");
+	});
+	
+	btprevioustuto.addEventListener("click", function(){
+		pagetutomode.classList.remove("active");
+		pagetutoclick.classList.add("active");
+	});
+	
+	
 	pagstart.addEventListener("click", function(){
 		pagemenu.style.display = "block";	
 		pagstart.style.display = "none";	
@@ -118,7 +137,21 @@
 
 	});
 
-	pagtutorial.addEventListener("click", function(){
+	btmenututo1.addEventListener("click", function(){
+			
+		pagtutorial.classList.add("fadein-page");
+		
+		setTimeout( function(){
+			pagemenu.classList.remove("fadein-page");
+			pagtutorial.classList.remove("fadein-page");
+			pagtutorial.style.display = "none"; 
+			
+			pagemenu.style.display = "block";
+		}, 50);
+		
+	});
+	
+	btmenututo2.addEventListener("click", function(){
 			
 		pagtutorial.classList.add("fadein-page");
 		

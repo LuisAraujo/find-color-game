@@ -3,9 +3,9 @@
 <link rel="shortcut icon" href="assets/logo.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pick Color</title>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
-</style>
+<!-- <style>
+	/* @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap'); */
+</style> -->
 <link rel="stylesheet" href="css/styles.css">
 
 <script>
@@ -47,7 +47,7 @@
 
 <div id="bg_game">
 	
-	<div id="bt-returnmenu"> menu </div>
+	<div id="bt-returnmenu" class="bn-top"> menu </div>
 	<div id="datagame"> ... </div>
 	<div id="record"> <img src="assets/icon-record.png"><span id="txt-record">level 1</span> </div>
 	
@@ -62,19 +62,32 @@
 </div>
 
 <div class="bgtutorial" id="tutorial">
-	<!-- <div class="screent" >
-		<div class="message">when the color of the square to equal the background...</div>
+	
+	
+	<div id="tuto-click" class="screent active" >
+		<div style="width:100%; height: 50px"> 
+			<div id="bt-menututorial1" class="bn-top bt-menututorial"> menu </div>
+			<div id="bt-nexttutorial" class="bn-top"> next </div>
+		</div>
+		<div class="message mt2">when the color of the square to equal the background...</div>
 		<img class="hand-click" src="assets/bt-click.png">
 		<div class="square">80</div>
-	</div> -->
+	</div> 
 	
-	<div class="screent" >
-		<div class="message">You can chose how to play</div>
-		<div class="message">1 Life mode</div>
-		<div class="submessage" style="color: #999">You need get a target point in square to continue. 
+	<div id="tuto-mode" class="screent bg-black" >
+		<div style="width:100%; height: 50px"> 
+			<div id="bt-menututorial2" class="bn-top bt-menututorial"> menu </div>
+			<div id="bt-previoustutorial" class="bn-top"> previous </div>
+		</div>
+		
+		<div class="message black mt2">You can chose how to play</div>
+		
+		<div class="message black mt5">1 Life mode</div>
+		<div class="submessage green">You need get a target point in square to continue. 
 		The points is calculate with RGB diference bettewen background and square.  </div>
-		<div class="message">Scoring</div>
-		<div class="submessage" style="color: #999">You stop play if your score is less then 0 </div>
+		
+		<div class="message black mt5">Scoring</div>
+		<div class="submessage green" >You stop play if your score is less then 0 </div>
 	</div>
 	
 </div>
