@@ -178,8 +178,10 @@
 		color =  [ add[0] * factor , add[1] * factor, add[2] * factor];
 		limit = [ add[0] * 255 , add[1] * 255, add[2] * 255];
 		
+		time = 10 - parseInt(current_level / 10);
+		
 		//color, limit, add, target, time
-		levels.push( new Level(color,limit, add, min_target, 10));
+		levels.push( new Level(color, limit, add, min_target, time) );
 	
 
 	}
@@ -317,7 +319,8 @@
 		current_level = 0;
 		current_point = 0;
 		
-		showAds();
+		startLevel();
+		//showAds();
 	});
 
 	square.addEventListener("click", pickColor, false);
